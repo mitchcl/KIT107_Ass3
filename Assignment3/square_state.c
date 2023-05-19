@@ -1,4 +1,4 @@
-/*
+ /*
 *	Square State ADT Implementation
 *	Author: <<YOUR STUDENT IDs AND NAMES HERE>>
 *	Version: April 2023
@@ -81,7 +81,9 @@ int get_row(square_state s)
 */
 int get_column(square_state s)
 {
-	COMPLETE ME!
+	trace("get_column: get_column starts and finishes");
+
+	return (s->column);
 }
 
 
@@ -97,7 +99,11 @@ int get_column(square_state s)
 */
 void set_row(square_state s, int r)
 {
-	COMPLETE ME!
+	trace("set_row: set_row starts");
+
+	s->row = r;
+
+	trace("set_row: set_row ends");
 }
 
 
@@ -131,7 +137,7 @@ void set_column(square_state s, int c)
 */
 bool occupied(square_state s)
 {
-	COMPLETE ME!
+	return s->visited;
 }
 
 
@@ -145,7 +151,7 @@ bool occupied(square_state s)
 */
 void occupy(square_state s)
 {
-	COMPLETE ME!
+	s->visited = true;
 }
 
 
