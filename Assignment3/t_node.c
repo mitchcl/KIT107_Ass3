@@ -22,7 +22,7 @@
 //types
 struct t_node_int
 {
-	void *data;		// the value stored in the node
+	void* data;		// the value stored in the node
 	int level;		// the level of the current node
 	t_node child;	// the eldest child node of the current node
 	t_node sibling;	// the next eldest node of the current node
@@ -46,9 +46,14 @@ struct t_node_int
 	*	param o the value to store in the data field of the node
 	*	param l the level number of the created node
 */
-void init_t_node(t_node *tp, void *o, int l)
+void init_t_node(t_node *tp, void* o, int l)
 {
-	COMPLETE ME!
+	(*tp) = (t_node)malloc(sizeof(struct t_node_int));
+
+	(*tp)->sibling = NULL;
+	(*tp)->child = NULL;
+	(*tp)->data = o;
+	(*tp)->level = l;
 }
 
 
@@ -65,7 +70,7 @@ void init_t_node(t_node *tp, void *o, int l)
 */
 void set_t_node_data(t_node t, void *o)
 {
-	COMPLETE ME!
+	t->data = o;
 }
 	
 	
@@ -82,7 +87,7 @@ void set_t_node_data(t_node t, void *o)
 */
 void set_t_node_level(t_node t, int l)
 {
-	COMPLETE ME!
+	t->level = l;
 }
 	
 	
@@ -99,7 +104,7 @@ void set_t_node_level(t_node t, int l)
 */
 void set_t_node_child(t_node t, t_node n)
 {
-	COMPLETE ME!
+	t->child = n;
 }
 	
 	
@@ -116,7 +121,7 @@ void set_t_node_child(t_node t, t_node n)
 */
 void set_t_node_sibling(t_node t, t_node n)
 {
-	COMPLETE ME!
+	t->sibling = n;
 }
 
 
@@ -130,9 +135,9 @@ void set_t_node_sibling(t_node t, t_node n)
 	*
 	*	return variable the item in the node
 */
-void *get_t_node_data(t_node t)
+void* get_t_node_data(t_node t)
 {
-	COMPLETE ME!
+	return t->child;
 }
 	
 	
@@ -149,7 +154,7 @@ void *get_t_node_data(t_node t)
 */
 int get_t_node_level(t_node t)
 {
-	COMPLETE ME!
+	return t->level;
 }
 	
 	
@@ -166,7 +171,7 @@ int get_t_node_level(t_node t)
 */
 t_node get_t_node_child(t_node t)
 {
-	COMPLETE ME!
+	return t->child;
 }
 	
 	
@@ -183,5 +188,5 @@ t_node get_t_node_child(t_node t)
 */
 t_node get_t_node_sibling(t_node t)
 {
-	COMPLETE ME!
+	return t->sibling;
 }
