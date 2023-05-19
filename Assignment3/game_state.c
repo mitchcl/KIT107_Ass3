@@ -28,13 +28,14 @@ struct game_state_int {
 	*	initialiser function.
 	*	Pre-condition: none
 	*	Post-condition: a game_state variable is created and pointed
-	*					to by the first parameter.  Each element in 
+	*					to by the first parameter.  Each element in
 	*					the board table is created empty
 	*	Informally: creates an initial game_state
 */
-void init_game_state(game_state *gp)
+void init_game_state(game_state* gp)
 {
-	COMPLETE ME!
+	*gp = (square_state)malloc(sizeof(struct game_state_int)); // allocate memory for the collection
+	(*gp)->board = NULL; // initialize board to NULL
 }
 
 
@@ -88,7 +89,7 @@ void set_square(game_state g, square_state s)
 /*
 	* 	valid
 	*	Check whether a square is on the board
-	*	Pre-condition: the given game_state is defined 
+	*	Pre-condition: the given game_state is defined
 	*	Post-condition: true is returned if (r,c) is within the bounds
 	*					of the given game_state variable's board field,
 	*					and false is returned otherwise
@@ -101,7 +102,7 @@ void set_square(game_state g, square_state s)
 	*/
 bool valid(game_state g, int r, int c)
 {
-	COMPLETE ME!
+	return is_empty_game_tree(g);
 }
 
 
@@ -120,7 +121,7 @@ bool valid(game_state g, int r, int c)
 */
 bool row_clear(game_state g, int r)
 {
-	COMPLETE ME!
+	get_row(r);
 }
 
 

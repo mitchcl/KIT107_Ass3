@@ -29,7 +29,8 @@ struct stack_int {
 */
 void init_stack(stack *sp)
 {
-	COMPLETE ME!
+	*sp = (node)malloc(sizeof(struct stack_int)); // allocate memory for the collection
+	(*sp)->tos = NULL; // initialize tos to NULL
 }
 
 
@@ -45,7 +46,7 @@ void init_stack(stack *sp)
 */
 bool is_empty_stack(stack s)
 {
-	COMPLETE ME!
+	return(s->tos == NULL);
 }
 
 
@@ -60,7 +61,7 @@ bool is_empty_stack(stack s)
 */
 void *top(stack s)
 {
-	COMPLETE ME!
+	return(s->tos);
 }
 
 
@@ -74,7 +75,7 @@ void *top(stack s)
 */
 void pop(stack s)
 {
-	COMPLETE ME!
+	s->tos == NULL;
 }
 
 
@@ -93,7 +94,7 @@ void pop(stack s)
 */
 void push(stack s,void *o)
 {
-	COMPLETE ME!
+	s->tos = o;
 }
 
 
