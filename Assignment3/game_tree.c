@@ -77,7 +77,7 @@ void init_game_tree(game_tree *tp,bool e,void *o,int l)
 */
 bool is_empty_game_tree(game_tree t)
 {
-	COMPLETE ME!
+	return (t->root == NULL);
 }
 
 
@@ -118,7 +118,11 @@ void *get_data(game_tree t)
 */
 int get_level(game_tree t)
 {
-	COMPLETE ME!
+	// Making sure the tree is pointing to something
+	if (!is_empty_game_tree(t))
+	{
+		return (get_t_node_level(t->root));
+	}
 }
 	
 
@@ -166,7 +170,10 @@ game_tree get_child(game_tree t)
 */
 game_tree get_sibling(game_tree t) 
 {
-	COMPLETE ME!
+	if (!is_empty_game_tree)
+	{
+		return (t->root = get_t_node_sibling(t->root));
+	}
 }
 
 
@@ -191,7 +198,7 @@ void set_data(game_tree t,void *o)
 		exit(1);
 	}
 		
-	set_t_node_data(t->root,o);
+	set_t_node_data(t->root, o);
 		
 	trace("set_data: set_data ends");
 }
@@ -210,7 +217,10 @@ void set_data(game_tree t,void *o)
 */
 void set_level(game_tree t,int l)
 {
-	COMPLETE ME!
+	if (!is_empty_game_tree)
+	{
+		set_t_node_level(t->root, l);
+	}
 }
 	
 	
@@ -227,7 +237,10 @@ void set_level(game_tree t,int l)
 */
 void set_child(game_tree t, game_tree c)
 {
-	COMPLETE ME!
+	if (!is_empty_game_tree)
+	{
+		set_t_node_child(t->root, c);
+	}
 }
 
 
@@ -244,7 +257,10 @@ void set_child(game_tree t, game_tree c)
 */
 void set_sibling(game_tree t,game_tree s)
 {
-	COMPLETE ME!
+	if (!is_empty_game_tree)
+	{
+		set_t_node_sibling(t->root, s);
+	}
 }
 	
 	
