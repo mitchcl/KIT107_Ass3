@@ -1,7 +1,7 @@
 /*
  *	Game Tree ADT Implementation
- *	Author: <<YOUR STUDENT IDs AND NAMES HERE>>
- *	Version: April 2023
+ *	Author: Elijah Gladdish 559819 &
+ *	Version: May 2023
  *	
  *	This file holds the game_tree ADT which is a
  *	general game tree.  The game_tree is built using

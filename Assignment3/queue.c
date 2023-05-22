@@ -1,7 +1,7 @@
 /*
  * Implementation for Queue using linked-list
- * Author: <<YOUR STUDENT IDs AND NAMES HERE>>
- * Version: April 2023
+ * Author: Elijah Gladdish 559819 &
+ * Version: May 2023
  *	
  *	YOU NEED TO MAKE CHANGES TO THIS FILE!
  */
@@ -30,8 +30,8 @@ struct queue_int {
 */
 void init_queue(queue *qp)
 {
-	*qp = (node)malloc(sizeof(struct queue_int)); // allocate memory for the collection
-	set_data_node(qp, NULL);
+	*qp = (node)malloc(sizeof(struct queue_int));
+	(*qp)->first = NULL;
 }
 
 
@@ -47,7 +47,7 @@ void init_queue(queue *qp)
 */
 bool is_empty_queue(queue q)
 {
-	return(get_data_node(q) == NULL);
+	return((q->first) == NULL);
 }
 
 
@@ -62,7 +62,7 @@ bool is_empty_queue(queue q)
 */
 void *front(queue q)
 {
-	return(q->first);
+	return(get_data_node(q->first));
 }
 
 
@@ -76,7 +76,7 @@ void *front(queue q)
 */
 void rear(queue q)
 {
-	set_data_node(q, NULL);
+	q->first = get_next_node(q->first);
 }
 
 
@@ -93,7 +93,18 @@ void rear(queue q)
 */
 void add(queue q, void *o)
 {
-	set_data_node(q, o);
+	// Creating the node to be added
+	node new_node;
+	init_node(&new_node, o);
+
+	// Checking if first is NULL incase there isn't any nodes in the queue yet
+	node current_node = q->first;
+	while ((q->first != NULL) && (get_next_node(current_node) != NULL))
+	{
+		current_node = get_next_node(current_node);
+	}
+
+	set_next_node(current_node, new_node);
 }
 
 

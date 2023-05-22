@@ -1,7 +1,7 @@
 /*
 *	Game State ADT Implementation
-*	Author: <<YOUR STUDENT IDs AND NAMES HERE>>
-*	Version: April 2023
+*	Author: Elijah Gladdish 559819 &
+*	Version: May 2023
 *
 *	This file holds the game_state ADT.  It comprises
 *	the board (as a two-dimensional array called "board").
@@ -34,8 +34,20 @@ struct game_state_int {
 */
 void init_game_state(game_state* gp)
 {
-	*gp = (square_state)malloc(sizeof(struct game_state_int)); // allocate memory for the collection
-	(*gp)->board = NULL; // initialize board to NULL
+	*gp = (square_state)malloc(sizeof(struct game_state_int));
+
+	// A 2d loop that goes through every square_state on the board
+	for (int row = 0; row < DIMENSION; row++)
+	{
+		for (int col = 0; col < DIMENSION; col++) 
+		{
+			// Creating a new, empty, square_state to fill the board
+			square_state new_square_state;
+			init_square_state(&new_square_state, row, col);
+
+			(*gp)->board[row][col] = new_square_state;
+		}
+	}
 }
 
 
@@ -102,7 +114,7 @@ void set_square(game_state g, square_state s)
 	*/
 bool valid(game_state g, int r, int c)
 {
-	return is_empty_game_tree(g);
+	return ( (r < DIMENSION) && (c < DIMENSION) );
 }
 
 
@@ -121,7 +133,18 @@ bool valid(game_state g, int r, int c)
 */
 bool row_clear(game_state g, int r)
 {
-	get_row(r);
+	// Running through the entire row
+	for (int col = 0; col < DIMENSION; col++)
+	{
+		if (occupied(get_square(g, r, col)) )
+		{
+			// So the function can stop once a queen is found
+			return false;
+		}
+	}
+
+	// No queens were found
+	return true;
 }
 
 
@@ -141,7 +164,18 @@ bool row_clear(game_state g, int r)
 */
 bool column_clear(game_state g, int c)
 {
-	COMPLETE ME!
+	// Running through the entire column
+	for (int row = 0; row < DIMENSION; row++)
+	{
+		if (occupied(get_square(g, row, c)))
+		{
+			// So the function can stop once a queen is found
+			return false;
+		}
+	}
+
+	// No queens were found
+	return true;
 }
 
 

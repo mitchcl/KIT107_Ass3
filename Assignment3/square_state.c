@@ -1,7 +1,7 @@
  /*
 *	Square State ADT Implementation
-*	Author: <<YOUR STUDENT IDs AND NAMES HERE>>
-*	Version: April 2023
+*	Author: Elijah Gladdish 559819 &
+*	Version: May 2023
 *
 *	This file holds the square_state ADT.  It comprises
 *	the coordinate of square (as "row" and "column"),
@@ -63,8 +63,6 @@ void init_square_state(square_state *sp, int r, int c)
 */
 int get_row(square_state s)
 {
-	trace("get_row: get_row starts and finishes");
-
 	return (s->row);
 }
 
@@ -81,8 +79,6 @@ int get_row(square_state s)
 */
 int get_column(square_state s)
 {
-	trace("get_column: get_column starts and finishes");
-
 	return (s->column);
 }
 
@@ -99,11 +95,7 @@ int get_column(square_state s)
 */
 void set_row(square_state s, int r)
 {
-	trace("set_row: set_row starts");
-
 	s->row = r;
-
-	trace("set_row: set_row ends");
 }
 
 
@@ -119,11 +111,7 @@ void set_row(square_state s, int r)
 */
 void set_column(square_state s, int c)
 {
-	trace("set_column: set_column starts");
-
 	s->column = c;
-
-	trace("set_column: set_column ends");
 }
 
 

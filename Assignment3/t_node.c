@@ -1,7 +1,7 @@
 /*
  *	Tree Node ADT
- *	Author: <<YOUR STUDENT IDs AND NAMES HERE>>
- *	Version: April 2023
+ *	Author: Elijah Gladdish 559819 &
+ *	Version: May 2023
  *	
  *	This file holds the Tree Node ADT which represents
  *	the nodes in a doubly-linked general tree.  Tree

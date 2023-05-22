@@ -1,7 +1,7 @@
 /*
  * Implementation for Stack using linked-list
- * Author: <<YOUR STUDENT IDs AND NAMES HERE>>
- * Version: April 2023
+ * Author: Elijah Gladdish 559819 &
+ * Version: May 2023
  *	
  *	YOU NEED TO MAKE CHANGES TO THIS FILE!
  */
@@ -30,8 +30,7 @@ struct stack_int {
 void init_stack(stack *sp)
 {
 	*sp = (node)malloc(sizeof(struct stack_int));
-	(*sp)->tos = NULL; // initialize tos to NULL
-
+	(*sp)->tos = NULL;
 }
 
 
@@ -76,7 +75,7 @@ void *top(stack s)
 */
 void pop(stack s)
 {
-	s->tos == NULL;
+	s->tos = get_next_node(s->tos);
 }
 
 
@@ -95,7 +94,15 @@ void pop(stack s)
 */
 void push(stack s,void *o)
 {
-	s->tos = o;
+	// Creating the node to be added
+	node* new_node;
+	init_node(new_node, o);
+
+	// Making the node point to the rest of the stack
+	set_next_node(new_node, s->tos);
+
+	// Making the new node the new top of stack
+	s->tos = new_node;
 }
 
 
