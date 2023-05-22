@@ -29,8 +29,9 @@ struct stack_int {
 */
 void init_stack(stack *sp)
 {
-	*sp = (node)malloc(sizeof(struct stack_int)); // allocate memory for the collection
+	*sp = (node)malloc(sizeof(struct stack_int));
 	(*sp)->tos = NULL; // initialize tos to NULL
+
 }
 
 
