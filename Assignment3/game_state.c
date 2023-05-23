@@ -298,8 +298,14 @@ bool clash(game_state g, int r, int c)
 	*	return bool whether the nominated square contains a queen
 	*/
 bool taken(game_state g, int r, int c)
-{
-	COMPLETE ME!
+{	
+	// Making sure the square is on the board
+	if ( !valid(g, r, c) )
+	{
+		exit(1);
+	}
+
+	return occupied((g->board)[r][c]);
 }
 
 
@@ -317,7 +323,13 @@ bool taken(game_state g, int r, int c)
 */
 void land(game_state g, int r, int c)
 {
-	COMPLETE ME!
+	// Making sure the square is on the board
+	if (!valid(g, r, c))
+	{
+		exit(1);
+	}
+	
+	occupy((g->board)[r][c]);
 }
 
 
