@@ -13,7 +13,7 @@
 
 #include <stdbool.h>
 
-#define TRACING true
+#define TRACING false
 #define DIMENSION 4
 #define BREADTH_FIRST false
 

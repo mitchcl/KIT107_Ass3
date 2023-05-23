@@ -285,7 +285,7 @@ void set_sibling(game_tree t,game_tree s)
 */
 void generate_levelBF(game_tree t, queue q)
 {
-	COMPLETE ME!
+	//COMPLETE ME!
 }
 
 
@@ -313,7 +313,7 @@ void generate_levelBF(game_tree t, queue q)
 */
 game_tree build_gameBF(game_tree t, queue q, int d)
 {
-	COMPLETE ME!
+	//COMPLETE ME!
 }
 
 
@@ -332,7 +332,7 @@ game_tree build_gameBF(game_tree t, queue q, int d)
 */
 void generate_levelDF(game_tree t, stack s)
 {
-	COMPLETE ME!
+	//COMPLETE ME!
 }
 
 
@@ -360,7 +360,7 @@ void generate_levelDF(game_tree t, stack s)
 */
 game_tree build_gameDF(game_tree t, stack s, int d)
 {
-	COMPLETE ME!
+	//COMPLETE ME!
 }
 
 

@@ -344,7 +344,21 @@ void land(game_state g, int r, int c)
 */
 game_state clone(game_state g)
 {
-	COMPLETE ME!
+	// Making a new empty game_sate to be the clone
+	game_state clone_game_state;
+	init_game_state(&clone_game_state);
+
+	// A 2d  loop that goes through all the squares in the new board
+	for (int row = 0; row < DIMENSION; row++)
+	{
+		for (int col = 0; col < DIMENSION; col++) 
+		{
+			// Copying over values from the pre-existing board
+			set_square(clone_game_state, (g->board[row][col]);
+		}
+	}
+		
+	return clone_game_state;
 }
 
 
