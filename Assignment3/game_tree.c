@@ -285,7 +285,16 @@ void set_sibling(game_tree t,game_tree s)
 */
 void generate_levelBF(game_tree t, queue q)
 {
-	//COMPLETE ME!
+	// A for loop that runs through every row 
+		// If row clear
+			// A for loop that runs through every coloumn
+				// If (not taken) && (column clear) && (diagonals clear)
+					// clone the game state
+					// occupy the current square
+					// init a new t_node with the new game state in it
+					// A while loop that runs until it finds the youngest child
+						// set next of the youngest child of t to be the new t_node
+					// add it to the queue
 }
 
 
@@ -313,7 +322,20 @@ void generate_levelBF(game_tree t, queue q)
 */
 game_tree build_gameBF(game_tree t, queue q, int d)
 {
-	//COMPLETE ME!
+	// If the tree isnt deep enough
+		// Call generate_levelsDF
+	// else
+		// Initialise a game_tree, answer, with data = t's data
+		// Return the new game tree
+
+
+	// If the stack isn't empty
+		// Assign front to to a temp variable so it isn't lost
+		// rear fornt
+		// Call build_gameDF with the temp variable
+	// else 
+		// Initialise an empty game_tree
+		// Return the empty game_tree
 }
 
 
@@ -332,7 +354,16 @@ game_tree build_gameBF(game_tree t, queue q, int d)
 */
 void generate_levelDF(game_tree t, stack s)
 {
-	//COMPLETE ME!
+	// A for loop that runs through every row 
+		// If row clear
+			// A for loop that runs through every coloumn
+				// If (not taken) && (column clear) && (diagonals clear)
+					// clone the game state
+					// occupy the current square
+					// init a new t_node with the new game state in it
+					// A while loop that runs until it finds the youngest child
+						// set next of the youngest child of t to be the new t_node
+					// add it to the stack
 }
 
 
@@ -360,21 +391,34 @@ void generate_levelDF(game_tree t, stack s)
 */
 game_tree build_gameDF(game_tree t, stack s, int d)
 {
-	//COMPLETE ME!
+	// If the tree isnt deep enough
+		// Call generate_levelsDF
+	// else
+		// Initialise a game_tree, answer, with data = t's data
+		// Return the new game tree
+
+
+	// If the stack isn't empty
+		// Assign tos to to a temp variable so it isn't lost
+		// Pop tos
+		// Call build_gameDF with the temp variable
+	// else 
+		// Initialise an empty game_tree
+		// Return the empty game_tree
 }
 
 
 /*
-	*	to_string_game_tree
-	*	String conversion for tree
-	*	Pre-condition: none
-	*	Post-condition: a string variable is returned consisting of the
-	*				string representation of all items in the game_tree,
-	*				from top to bottom in depth-first order, separated by
-	*				" " and contained within "<" and ">"
-	*	Informally: produce a string representation of the game tree
-	*
-	*	return (char *) printable contents of game tree
+*	to_string_game_tree
+*	String conversion for tree
+*	Pre-condition: none
+*	Post-condition: a string variable is returned consisting of the
+*				string representation of all items in the game_tree,
+*				from top to bottom in depth-first order, separated by
+*				" " and contained within "<" and ">"
+*	Informally: produce a string representation of the game tree
+*
+*	return (char *) printable contents of game tree
 */
 char *to_string_game_tree(game_tree t)
 {
