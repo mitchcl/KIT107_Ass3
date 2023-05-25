@@ -34,7 +34,7 @@ struct game_state_int {
 */
 void init_game_state(game_state* gp)
 {
-	*gp = (square_state)malloc(sizeof(struct game_state_int));
+	(*gp) = (square_state)malloc(sizeof(struct game_state_int));
 
 	// A 2d loop that goes through every square_state on the board
 	for (int row = 0; row < DIMENSION; row++)
@@ -354,7 +354,7 @@ game_state clone(game_state g)
 		for (int col = 0; col < DIMENSION; col++) 
 		{
 			// Copying over values from the pre-existing board
-			set_square(clone_game_state, (g->board[row][col]);
+			set_square(clone_game_state, (g->board[row][col]));
 		}
 	}
 		
