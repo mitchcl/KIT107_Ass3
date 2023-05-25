@@ -327,7 +327,7 @@ void generate_levelBF(game_tree t, queue q)
 						set_sibling(current_tree, new_board_tree);
 					}
 					add(q, &new_board_tree);
-				}
+				} 
 			}
 		}
 	}
