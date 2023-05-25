@@ -137,7 +137,7 @@ void set_t_node_sibling(t_node t, t_node n)
 */
 void* get_t_node_data(t_node t)
 {
-	return t->child;
+	return t->data;
 }
 	
 	

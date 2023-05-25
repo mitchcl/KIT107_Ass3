@@ -13,9 +13,9 @@
 
 #include <stdbool.h>
 
-#define TRACING false
+#define TRACING true
 #define DIMENSION 4
-#define BREADTH_FIRST false
+#define BREADTH_FIRST true
 
 void trace(char *s);
 

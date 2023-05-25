@@ -225,7 +225,7 @@ void set_data(game_tree t,void *o)
 */
 void set_level(game_tree t,int l)
 {
-	if (is_empty_game_tree)
+	if (is_empty_game_tree(t))
 	{
 		exit(1);
 	}
@@ -246,7 +246,7 @@ void set_level(game_tree t,int l)
 */
 void set_child(game_tree t, game_tree c)
 {
-	if (is_empty_game_tree)
+	if (is_empty_game_tree(t))
 	{
 		exit(1);
 	}
@@ -267,7 +267,7 @@ void set_child(game_tree t, game_tree c)
 */
 void set_sibling(game_tree t,game_tree s)
 {
-	if (is_empty_game_tree)
+	if (is_empty_game_tree(t))
 	{
 		exit(1);
 	}
@@ -308,19 +308,25 @@ void generate_levelBF(game_tree t, queue q)
 					land(new_board, row, col);
 
 					int t_level = get_level(t);
-					t_node new_board_tree;
-					init_t_node(&new_board_tree, &new_board, t_level++);
+					game_tree new_board_tree;
+					init_game_tree(&new_board_tree, false, &new_board, t_level++);
 
 					// The loop variable for finding the youngest child
 					game_tree current_tree = get_child(t);
 
-					while (current_tree->root == NULL && get_sibling(t)->root == NULL)
+					if (current_tree->root == NULL)
 					{
-						current_tree = get_sibling(t);
+						set_child(t, new_board_tree);
 					}
-
-					set_sibling(t, current_tree);
-					add(q, &current_tree);
+					else
+					{
+						while (get_sibling(current_tree)->root != NULL)
+						{
+							current_tree = get_sibling(current_tree);
+						}
+						set_sibling(current_tree, new_board_tree);
+					}
+					add(q, &new_board_tree);
 				}
 			}
 		}

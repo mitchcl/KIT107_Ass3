@@ -68,7 +68,7 @@ square_state get_square(game_state g, int r, int c)
 {
 	trace("get_square: get_square starts and finishes");
 
-	return (g->board[r - 1][c - 1]);
+	return (g->board[r][c]);
 }
 
 
@@ -213,7 +213,7 @@ bool diagonals_clear(game_state g, int r, int c)
 
 	trace("diagonals_clear: found top left");
 
-	while ((x <= DIMENSION) && (y <= DIMENSION))
+	while ((x < DIMENSION) && (y < DIMENSION))
 	{
 		if (taken(g, x, y))
 		{
@@ -237,7 +237,7 @@ bool diagonals_clear(game_state g, int r, int c)
 
 	trace("diagonals_clear: found top right");
 
-	while ((x <= DIMENSION) && (y <= DIMENSION))
+	while ((x < DIMENSION) && (y < DIMENSION))
 	{
 		if (taken(g, x, y))
 		{
@@ -354,7 +354,7 @@ game_state clone(game_state g)
 		for (int col = 0; col < DIMENSION; col++) 
 		{
 			// Copying over values from the pre-existing board
-			set_square(clone_game_state, (g->board[row][col]));
+			set_square(clone_game_state, g->board[row][col]);
 		}
 	}
 		

@@ -97,14 +97,23 @@ void add(queue q, void *o)
 	node new_node;
 	init_node(&new_node, o);
 
-	// Checking if first is NULL incase there isn't any nodes in the queue yet
 	node current_node = q->first;
-	while ((q->first != NULL) && (get_next_node(current_node) != NULL))
+
+	// Checking if first is NULL incase there isn't any nodes in the queue yet
+	if (is_empty_queue(q))
 	{
-		current_node = get_next_node(current_node);
+		(q->first) = new_node;
+	}
+	else
+	{
+		while (get_next_node(current_node) != NULL)
+		{
+			current_node = get_next_node(current_node);
+		}
+		set_next_node(current_node, new_node);
 	}
 
-	set_next_node(current_node, new_node);
+	
 }
 
 
