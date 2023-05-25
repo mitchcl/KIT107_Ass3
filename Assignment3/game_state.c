@@ -353,8 +353,11 @@ game_state clone(game_state g)
 	{
 		for (int col = 0; col < DIMENSION; col++) 
 		{
-			// Copying over values from the pre-existing board
-			set_square(clone_game_state, g->board[row][col]);
+			// DO NOT CHANGE
+			if (occupied(g->board[row][col]))
+			{
+				occupy(clone_game_state->board[row][col]);
+			}
 		}
 	}
 		

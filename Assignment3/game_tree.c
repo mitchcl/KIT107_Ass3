@@ -294,41 +294,39 @@ void generate_levelBF(game_tree t, queue q)
 	game_state current_board;
 	current_board = get_data(t);
 
-	// A for loop that runs through every row
 	for (int row = 0; row < DIMENSION; row++)
 	{
-		if (row_clear(current_board, row))
+		for (int col = 0; col < DIMENSION; col++)
 		{
-			for (int col = 0; col < DIMENSION; col++)
+			if ( !clash(current_board, row, col) )
 			{
-				if ( (!taken(current_board, row, col)) && column_clear(current_board, col) && diagonals_clear(current_board, row, col) )
+				// creating the new board and placing the queen
+				game_state new_board;
+				new_board = clone(current_board);
+				land(new_board, row, col);
+
+				// putting that board into a game_tree
+				int t_level = get_level(t);
+				game_tree new_board_tree;
+				init_game_tree(&new_board_tree, false, &new_board, t_level++);
+
+				// The loop variable for finding the youngest child
+				game_tree current_tree = get_child(t);
+
+				if (current_tree->root == NULL)
 				{
-					game_state new_board;
-					new_board = clone(current_board);
-					land(new_board, row, col);
-
-					int t_level = get_level(t);
-					game_tree new_board_tree;
-					init_game_tree(&new_board_tree, false, &new_board, t_level++);
-
-					// The loop variable for finding the youngest child
-					game_tree current_tree = get_child(t);
-
-					if (current_tree->root == NULL)
+					set_child(t, new_board_tree);
+				}
+				else
+				{
+					while (get_sibling(current_tree)->root != NULL)
 					{
-						set_child(t, new_board_tree);
+						current_tree = get_sibling(current_tree);
 					}
-					else
-					{
-						while (get_sibling(current_tree)->root != NULL)
-						{
-							current_tree = get_sibling(current_tree);
-						}
-						set_sibling(current_tree, new_board_tree);
-					}
-					add(q, &new_board_tree);
-				} 
-			}
+					set_sibling(current_tree, new_board_tree);
+				}
+				add(q, &new_board_tree);
+			} 
 		}
 	}
 }
@@ -358,44 +356,32 @@ void generate_levelBF(game_tree t, queue q)
 */
 game_tree build_gameBF(game_tree t, queue q, int d)
 {
-	// If the tree isnt deep enough
 	if (get_level(t) < d)
 	{
-		// Call generate_levelsBF
 		generate_levelBF(t, q);
 	}
-	// else
 	else
 	{
-		// Initialise a game_tree, answer, with data = t's data
 		game_tree answer;
 		init_game_tree(&answer, false, get_data(t), get_level(t));		// Note: t should always be equal to d here
-		// Return the new game tree
 		return answer;
 	}
 		
-	// If the queue isn't empty
-	if (!is_empty_queue)
+	if (!is_empty_queue(q))
 	{
-		// Assign front to to a temp variable so it isn't lost
 		game_tree temp;
 		init_game_tree(&temp, true, NULL, NULL);
 		temp->root = front(q);
 
-		// rear front
 		rear(q);
 
-		// Call build_gameBF with the temp variable
 		build_gameBF(temp, q, d);
 	}
-	// else 
 	else
 	{
-		// Initialise an empty game_tree
 		game_tree answer;
 		init_game_tree(&answer, true, NULL, NULL);
 
-		// Return the empty game_tree
 		return answer;
 	}
 }
@@ -416,23 +402,36 @@ game_tree build_gameBF(game_tree t, queue q, int d)
 */
 void generate_levelDF(game_tree t, stack s)
 {
+
 	game_state current_board;
 	current_board = get_data(t);
-	for (int row = 0; row < DIMENSION; row++) {
-		if (row_clear(current_board, row)) {
-			for (int col = 0; col < DIMENSION; col++) {
-				if (!taken(current_board, row, col) && column_clear(current_board, col) && diagonals_clear(current_board,row,col)) {
-					game_state newboard;
-					newboard = clone(current_board);
-					land(newboard, row, col);
-					t_node tree;
-					init_t_node(&tree, newboard, get_level(t));
 
-					while (get_t_node_level(tree) < get_level(t)) {
-						tree = get_t_node_child(tree);
-					}
-					push(s, tree);
+	for (int row = 0; row < DIMENSION; row++) {
+		for (int col = 0; col < DIMENSION; col++) {
+			if (!clash(current_board, row, col)) {
+				game_state new_board;
+				new_board = clone(current_board);
+				land(new_board, row, col);
+				int t_level = get_level(t);
+				game_tree new_board_tree;
+				init_game_tree(&new_board_tree, false, &new_board, t_level++);
+
+				// The loop variable for finding the youngest child
+				game_tree current_tree = get_child(t);
+
+				if (current_tree->root == NULL)
+				{
+					set_child(t, new_board_tree);
 				}
+				else
+				{
+					while (get_sibling(current_tree)->root != NULL)
+					{
+						current_tree = get_sibling(current_tree);
+					}
+					set_sibling(current_tree, new_board_tree);
+				}
+				push(s, new_board_tree);
 			}
 		}
 	}
@@ -463,45 +462,33 @@ void generate_levelDF(game_tree t, stack s)
 */
 game_tree build_gameDF(game_tree t, stack s, int d)
 {
-	// If the tree isnt deep enough
 	if (get_level(t) < d)
 	{
-		// Call generate_levelsDF
 		generate_levelDF(t, s);
 	}
-	// else
 	else
 	{
-		// Initialise a game_tree, answer, with data = t's data
 		game_tree answer;
 		init_game_tree(&answer, false, get_data(t), get_level(t));
 
-		// Return the new game tree
 		return answer;
 	}
 
-	// If the stack isn't empty
-	if (!is_empty_stack)
+	if (!is_empty_stack(s))
 	{
-		// Assign tos to to a temp variable so it isn't lost
 		game_tree temp;
 		init_game_tree(&temp, true, NULL, NULL);
 		temp->root = top(s);
 		
-		// Pop tos
 		pop(s);
 
-		// Call build_gameDF with the temp variable
 		build_gameDF(temp, s, d);
 	}
-	// else 
 	else
 	{
-		// Initialise an empty game_tree
 		game_tree answer;
 		init_game_tree(&answer, true, NULL, NULL);
 		
-		// Return the empty game_tree
 		return answer;
 	}
 }
