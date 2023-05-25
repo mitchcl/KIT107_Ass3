@@ -410,7 +410,26 @@ game_tree build_gameBF(game_tree t, queue q, int d)
 */
 void generate_levelDF(game_tree t, stack s)
 {
-	
+	game_state current_board;
+	current_board = get_data(t);
+	for (int row = 0; row < DIMENSION; row++) {
+		if (row_clear(current_board, row)) {
+			for (int col = 0; col < DIMENSION; col++) {
+				if (!taken(current_board, row, col) && column_clear(current_board, col) && diagonals_clear(current_board,row,col)) {
+					game_state newboard;
+					newboard = clone(current_board);
+					land(newboard, row, col);
+					t_node tree;
+					init_t_node(&tree, newboard, get_level(t));
+
+					while (get_t_node_level(tree) < get_level(t)) {
+						tree = get_t_node_child(tree);
+					}
+					push(s, tree);
+				}
+			}
+		}
+	}
 }
 
 
